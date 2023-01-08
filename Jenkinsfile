@@ -18,7 +18,7 @@ pipeline {
             withCredentials([string(credentialsId: 'do-token', variable: 'token')]) {
               echo 'creating Digital Ocean Cluster'
               sh 'terraform init'
-              sh "terraform apply -var 'do_token=$(token)' --auto-approve"
+              sh "terraform apply -var 'do_token=${token}' --auto-approve"
             }
             
 
