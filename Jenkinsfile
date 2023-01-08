@@ -36,9 +36,9 @@ pipeline {
       steps {
         echo 'building the image ...'
         withCredentials([usernamePassword(credentialsId: 'hub.docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-          sh "docker build -t ${REPO}:${IMAGE} ."
+          sh "docker build -t ${REPO}/${IMAGE} ."
           sh "echo $PASS | docker login -u $USER --password-stdin"
-          sh "docker push ${REPO}:${IMAGE}"
+          sh "docker push ${REPO}/${IMAGE}"
         }
       }
     }
