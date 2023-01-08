@@ -3,7 +3,7 @@
 pipeline {
   agent any
   tools {
-    maven 'Maven'
+    maven '3.8.7'
   }
   environment {
     REPO = '0xceejay'
