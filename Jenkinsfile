@@ -10,7 +10,7 @@ pipeline {
     IMAGE = 'hello-app'
   }
 
-  // stages {
+  stages {
   //   stage('Provision cluster') {
   //     steps {
   //       script {
@@ -52,5 +52,5 @@ pipeline {
   //   stage () {
 
   //   }
-  // }
+  }
 }
