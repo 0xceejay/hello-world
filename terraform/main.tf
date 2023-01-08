@@ -36,6 +36,7 @@ resource "digitalocean_kubernetes_cluster" "my_cluster" {
 
 output "kubeconfig" {
   value = digitalocean_kubernetes_cluster.my_cluster.kube_config
+  sensitive = true
 }
 
 resource "null_resource" "save_kubeconfig" {
