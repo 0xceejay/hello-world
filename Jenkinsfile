@@ -11,19 +11,22 @@ pipeline {
   }
 
   stages {
-  //   stage('Provision cluster') {
-  //     steps {
-  //       script {
-  //         dir('terraform') {
-  //           echo 'creating Digital Ocean Cluster'
-  //           sh 'terraform init'
-  //           sh 'terraform apply --auto-approve'
+    stage('Provision cluster') {
+      steps {
+        script {
+          dir('terraform') {
+            withCredentials([string(credentialsId: 'do-token', variable: 'token')]) {
+              echo 'creating Digital Ocean Cluster'
+              sh 'terraform init'
+              sh "echo ${token} | terraform apply -var 'do_token=--password-stdin' --auto-approve"
+            }
+            
 
-  //           sh 'kubectl get node'
-  //         }
-  //       }
-  //     }
-  //   }
+            // sh 'kubectl get node'
+          }
+        }
+      }
+    }
 
     stage('Build app') {
       steps {
