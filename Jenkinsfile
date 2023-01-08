@@ -15,10 +15,10 @@ pipeline {
       steps {
         script {
           dir('terraform') {
-            withCredentials([string(credentialsId: 'do-token', variable: 'token')]) {
+            withCredentials([file(credentialsId: 'terraform.tfvars', variable: 'FIL')]) {
               echo 'creating Digital Ocean Cluster'
               sh 'terraform init'
-              sh "echo ${token} | terraform apply -var 'do_token=--password-stdin' --auto-approve"
+              sh "terraform apply -var-file="${FILE}" --auto-approve"
             }
             
 
