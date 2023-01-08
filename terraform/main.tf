@@ -39,8 +39,8 @@ output "kubeconfig" {
   sensitive = true
 }
 
-resource "null_resource" "save_kubeconfig" {
-  provisioner "local-exec" {
-    command = "echo ${digitalocean_kubernetes_cluster.my_cluster.kube_config} > .kube"
-  }
-}
+# resource "null_resource" "save_kubeconfig" {
+#   provisioner "local-exec" {
+#     command = "echo ${digitalocean_kubernetes_cluster.my_cluster.kube_config} > .kube"
+#   }
+# }
