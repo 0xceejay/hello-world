@@ -19,10 +19,10 @@ pipeline {
               echo 'creating Digital Ocean Cluster'
               sh 'terraform init'
               sh "terraform apply -var 'do_token=${token}' --auto-approve"
-            }
-            
 
-            // sh 'kubectl get node'
+              env.KUBECONFIG="kubeconfig.yaml"
+              sh "kubectl get node"
+            }
           }
         }
       }
@@ -46,14 +46,14 @@ pipeline {
       }
     }
 
-  //   stage('Configure infrastructure') {
-  //     steps {
-  //       sh 'ansible-playbook play.yaml'
-  //     }
-  //   }
+    stage('Configure infrastructure') {
+      steps {
+        sh 'ansible-playbook play.yaml'
+      }
+    }
 
-  //   stage () {
+    stage () {
 
-  //   }
+    }
   }
 }

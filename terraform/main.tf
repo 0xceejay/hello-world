@@ -39,8 +39,8 @@ output "kubeconfig" {
   sensitive = true
 }
 
-# resource "null_resource" "save_kubeconfig" {
-#   provisioner "local-exec" {
-#     command = "echo ${digitalocean_kubernetes_cluster.my_cluster.kube_config} > .kube"
-#   }
-# }
+resource "local_file" "kubeconfig" {
+  content     = digitalocean_kubernetes_cluster.my_cluster.kube_config[0].raw_config
+  filename    = "kubeconfig.yaml"
+  file_permission = "400"
+}
