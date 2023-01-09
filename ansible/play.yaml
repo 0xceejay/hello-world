@@ -1,0 +1,18 @@
+---
+- name: Deploy my app to the cluster
+  hosts: localhost
+  tasks:
+    - name: Create a new namespace
+      kubernetes.core.k8s:
+        name: workspace
+        api_version: v1
+        kind: Namespace
+        state: present
+        kubeconfig: /var/jenkins_home/workspace/hello/terraform/kubeconfig.yaml
+
+    - name: Deploy app and service
+      kubernetes.core.k8s:
+        state: present
+        src: /var/jenkins_home/workspace/hello/k8s.yml
+        namespace: workspace
+        kubeconfig: /var/jenkins_home/workspace/hello/terraform/kubeconfig.yaml
