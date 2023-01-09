@@ -46,11 +46,11 @@ pipeline {
       }
     }
 
-    stage('Configure infrastructure') {
-      steps {
-        sh 'ansible-playbook play.yaml'
-      }
-    }
+    // stage('Configure infrastructure') {
+    //   steps {
+    //     sh 'ansible-playbook play.yaml'
+    //   }
+    // }
 
     // stage () {
 
